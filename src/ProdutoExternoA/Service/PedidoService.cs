@@ -32,15 +32,15 @@ namespace ProdutoExternoA.Service
 
         public async Task<PedidoResponse> ProcessarPedidoAsync(CriarPedidoRequest request)
         {
-            var itensDomain = request.Itens.Select(i => new PedidoItem(i.ProdutoId, i.Quantidade, i.Valor)).ToList();
-            var pedido = new Pedido(request.PedidoId, request.ClienteId, itensDomain);
+            _logger.LogInformation("Iniciando processamento do pedido {PedidoId} para o cliente {ClienteId}", request.PedidoId, request.ClienteId);
+
+            var pedido = new Pedido(request.PedidoId, request.ClienteId, request.Itens);
 
             var imposto = await _factory.ObterCalculoImpostoAtivoAsync();
 
             pedido.CalcularImposto(imposto);
 
             await _repository.CriarAsync(pedido);
-
             await _publisher.Publicar(pedido);
 
             _logger.LogInformation("Pedido {Id} processado. Imposto: {Imposto}", pedido.PedidoId, pedido.ValorImposto);

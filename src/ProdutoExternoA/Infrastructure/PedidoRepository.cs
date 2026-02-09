@@ -18,8 +18,6 @@ namespace ProdutoExternoA.Infrastructure
         public PedidoRepository(IMongoDatabase db)
         {
             _collection = db.GetCollection<Pedido>("pedidos");
-            var index = Builders<Pedido>.IndexKeys.Ascending(x => x.PedidoId);
-            _collection.Indexes.CreateOne(new CreateIndexModel<Pedido>(index, new CreateIndexOptions { Unique = true }));
         }
 
         public async Task CriarAsync(Pedido pedido)
