@@ -48,5 +48,4 @@ namespace ProdutoExternoA.Service
             return new PedidoResponse(pedido.PedidoId, pedido.Status);
         }
     }
-
 }

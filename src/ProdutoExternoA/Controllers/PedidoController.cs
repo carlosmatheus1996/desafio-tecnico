@@ -11,7 +11,7 @@ namespace ProdutoExternoA.Controllers
     public class PedidoController : ControllerBase
     {
         private readonly IPedidoService _service;
-        private readonly IPedidoRepository _repository; // Usado para leitura (GET)
+        private readonly IPedidoRepository _repository;
 
         public PedidoController(IPedidoService service, IPedidoRepository repository)
         {
