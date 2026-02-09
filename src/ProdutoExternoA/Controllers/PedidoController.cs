@@ -12,11 +12,13 @@ namespace ProdutoExternoA.Controllers
     {
         private readonly IPedidoService _service;
         private readonly IPedidoRepository _repository;
+        private readonly ILogger<PedidoController> _logger;
 
-        public PedidoController(IPedidoService service, IPedidoRepository repository)
+        public PedidoController(IPedidoService service, IPedidoRepository repository, ILogger<PedidoController> logger)
         {
             _service = service;
             _repository = repository;
+            _logger = logger;
         }
 
         [HttpPost]
@@ -37,6 +39,7 @@ namespace ProdutoExternoA.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Erro fatal ao processar o pedido {PedidoId}", request.PedidoId);
                 return StatusCode(500, new { error = "Erro interno ao processar o pedido." });
             }
         }
