@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/ProdutoExternoA.Tests/ProdutoExternoA.Tests.csproj" Id="7ccfa219-248b-4e1e-9149-8eaa0a80aaad" />
+    <Project Path="src/ProdutoExternoA/ProdutoExternoA.csproj" Id="ad8c3fce-df02-4b3f-ab4d-eebe4e4bc59d" />
+  </Folder>
+</Solution>
