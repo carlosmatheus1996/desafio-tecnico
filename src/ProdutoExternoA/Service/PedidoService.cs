@@ -32,6 +32,8 @@ namespace ProdutoExternoA.Service
 
         public async Task<PedidoResponse> ProcessarPedidoAsync(CriarPedidoRequest request)
         {
+            _logger.LogInformation("Iniciando processamento do pedido {PedidoId} para o cliente {ClienteId}", request.PedidoId, request.ClienteId);
+
             var itensDomain = request.Itens.Select(i => new PedidoItem(i.ProdutoId, i.Quantidade, i.Valor)).ToList();
             var pedido = new Pedido(request.PedidoId, request.ClienteId, itensDomain);
 
